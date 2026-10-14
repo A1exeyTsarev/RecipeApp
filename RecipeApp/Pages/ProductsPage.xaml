@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="RecipeApp.Pages.ProductsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             >
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Text="🧺 Мои продукты" 
+                   FontSize="24" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,10"/>
+
+        <!-- Добавление продукта -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox x:Name="TxtNewProduct" 
+                     Width="200" 
+                     Height="32" 
+                     VerticalContentAlignment="Center"
+                     FontSize="14" 
+                     ToolTip="Введите название продукта"
+                     KeyDown="TxtNewProduct_KeyDown"/>
+
+            <Button x:Name="BtnAddProduct" 
+                    Click="BtnAddProduct_Click" 
+                    Width="80" 
+                    Height="32" 
+                    Content="➕ Добавить"
+                    Background="#27AE60" 
+                    Foreground="White" 
+                    FontWeight="Bold"
+                    Cursor="Hand" 
+                    Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <!-- Список продуктов -->
+        <ListBox x:Name="ListProducts" 
+                 Grid.Row="2" 
+                 Margin="0,10,0,10"
+                 FontSize="16">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" 
+                                Background="#F8F9FA" 
+                                CornerRadius="4" 
+                                Padding="10,8">
+                            <TextBlock Text="{Binding}" 
+                                       VerticalAlignment="Center"
+                                       FontSize="15"/>
+                        </Border>
+
+                        <Button Grid.Column="1" 
+                                Content="✕" 
+                                Width="30" 
+                                Height="30" 
+                                Background="#E74C3C" 
+                                Foreground="White" 
+                                FontWeight="Bold"
+                                Click="DeleteProduct_Click" 
+                                Tag="{Binding}"
+                                Cursor="Hand" 
+                                Margin="8,0,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Кнопка очистки -->
+        <Button Grid.Row="3" 
+                x:Name="BtnClearAll" 
+                Click="BtnClearAll_Click"
+                Content="🗑️ Очистить всё" 
+                Width="140" 
+                Height="35"
+                Background="#E74C3C" 
+                Foreground="White" 
+                FontWeight="Bold"
+                Cursor="Hand" 
+                HorizontalAlignment="Left"/>
+    </Grid>
+</UserControl>
